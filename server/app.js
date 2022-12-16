@@ -30,6 +30,7 @@ app.get("/api/weather", (req, res) => {
 
 
 app.get('/api/test', () => {
+    const getAPIKey = process.env.TRAIL_API_KEY;
 
     const options = {
 
@@ -37,7 +38,7 @@ app.get('/api/test', () => {
 
         headers: {
 
-            'X-RapidAPI-Key': 'd4f3fb3b77mshb66b4c6e752d815p1fda49jsnf028cdccaa6f',
+            'X-RapidAPI-Key': getAPIKey,
 
             'X-RapidAPI-Host': 'trailapi-trailapi.p.rapidapi.com'
 
