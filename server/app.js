@@ -11,6 +11,8 @@ app.get("/", () => {
 
 
 // API ENDPOINTS
+
+// weather
 app.get("/api/weather", (req, res)=>{
     const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
     const searchType = "current";
@@ -19,12 +21,44 @@ app.get("/api/weather", (req, res)=>{
         `http://api.weatherapi.com/v1/${searchType}.json?key=${WEATHER_API_KEY}&q=${location}`
     )
         .then((response) => response.json())
-        .then((data) => {console.log("Response: ", data);});
+        .then((data) => {console.log("Response: ", data);})
+        .catch(err => console.error(err));
         
 });
 
+// Yelp
+app.get("/api/yelp", (req, res)=>{
+    const location = "London";
+    const YELP_API_KEY = process.env.YELP_API_KEY;
+    const options = {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: `Bearer ${YELP_API_KEY}`
+        }
+      };      
+      
+      fetch(`https://api.yelp.com/v3/businesses/search?location=${location}&sort_by=best_match&limit=20`, options)
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((err) => console.error(err));        
+});
 
+app.get('/api/trails', ()=>{
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'd4f3fb3b77mshb66b4c6e752d815p1fda49jsnf028cdccaa6f',
+            'X-RapidAPI-Host': 'trailapi-trailapi.p.rapidapi.com'
+        }
+    };
+    
+    fetch('https://trailapi-trailapi.p.rapidapi.com/trails/explore/?lat=39.7551&lon=-75.5291', options)
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err, console.error(err));    
+});
 
 app.listen(PORT, () => {
     console.log("Listening port: " + PORT);
-}); //  take two parameters app is listening on port 3000                                
+}); //  take two parameters app is listening on port 3000   
