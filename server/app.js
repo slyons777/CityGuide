@@ -6,7 +6,6 @@ const PORT = process.env.PORT; //port to listen make it PORT capitalize because 
 
 app.get("/", () => {
     console.log("App is getting to the Home Page");
-
 }); //create update delete destroy
 
 
