@@ -6,7 +6,7 @@ const PORT = process.env.PORT; //port to listen make it PORT capitalize because 
 
 app.get("/", () => {
     console.log("App is getting to the Home Page");
-}); //create update delete destroy
+}); //create read update delete
 
 
 // API ENDPOINTS
@@ -18,17 +18,18 @@ app.get("/api/weather", (req, res) => {
         `http://api.weatherapi.com/v1/${searchType}.json?key=${WEATHER_API_KEY}&q=${location}`
     )
         .then((response) => response.json())
-        .then((data) => { console.log("Response: ", data); });
+        .then((data) => { console.log("Response: ", data); })
+        .catch(err => console.error('error', err));
 
 });
 
-//HIKE API:
-app.get('/api/test', () => {
-    const getAPIKey = process.env.TRAIL_API_KEY;
+//TRAIL API:
+app.get('/api/trails', () => {
+    const TRAIL_API_KEY = process.env.TRAIL_API_KEY;
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': getAPIKey,
+            'X-RapidAPI-Key': TRAIL_API_KEY,
             'X-RapidAPI-Host': 'trailapi-trailapi.p.rapidapi.com'
         }
     };
@@ -36,59 +37,36 @@ app.get('/api/test', () => {
     fetch('https://trailapi-trailapi.p.rapidapi.com/trails/explore/?lat=39.7551&lon=-75.5291', options)
         .then(response => response.json())
         .then(response => console.log(response))
-        .catch(err, console.error(err));
-});
-
-app.get('/api/trail', () => {
-    //Find Bike Trail API: 
-    const getAPIKey = process.env.TRAIL_API_KEY;
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': getAPIKey,
-            'X-RapidAPI-Host': 'trailapi-trailapi.p.rapidapi.com'
-        }
-    };
-
-    fetch('https://trailapi-trailapi.p.rapidapi.com/trails/explore/?lat=39.7551&lon=-75.5291', options)
-        .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err => console.error(err));
+        .catch(err => console.error('error', err));
 });
 
 // Yelp
-app.get("/api/yelp", (req, res)=>{
+app.get("/api/yelp", (req, res) => {
     const location = "London";
     const YELP_API_KEY = process.env.YELP_API_KEY;
     const options = {
         method: 'GET',
         headers: {
-          accept: 'application/json',
-          Authorization: `Bearer ${YELP_API_KEY}`
-        }
-      };      
-      
-      fetch(`https://api.yelp.com/v3/businesses/search?location=${location}&sort_by=best_match&limit=20`, options)
-        .then((response) => response.json())
-        .then((data) => console.log(data))
-        .catch((err) => console.error(err));        
-});
-
-app.get('/api/trails', ()=>{
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'd4f3fb3b77mshb66b4c6e752d815p1fda49jsnf028cdccaa6f',
-            'X-RapidAPI-Host': 'trailapi-trailapi.p.rapidapi.com'
+            accept: 'application/json',
+            Authorization: `Bearer ${YELP_API_KEY}`
         }
     };
-    
-    fetch('https://trailapi-trailapi.p.rapidapi.com/trails/explore/?lat=39.7551&lon=-75.5291', options)
-        .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err, console.error(err));    
+
+    fetch(`https://api.yelp.com/v3/businesses/search?location=${location}&sort_by=best_match&limit=20`, options)
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((err) => console.error('error', err));
 });
 
+app.get("/api/places", (req, res) => {
+    const PLACES_API_KEY = process.env.PLACES_API_KEY;
+
+    fetch(`https://api.geoapify.com/v2/places?categories=tourism.sights&bias=proximity:-87.6297982,41.8781136&limit=5&apiKey=${PLACES_API_KEY}`).then(response => response.json())
+    .then(result => {
+        console.log(JSON.stringify(result, undefined, 4));
+    })
+    .catch(err => console.log('error', err));
+});
 
 app.listen(PORT, () => {
     console.log("Listening port: " + PORT);

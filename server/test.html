@@ -1,6 +1,7 @@
 <!--Used to test google-map.js, the Google Map API-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,10 +46,10 @@
             </div>
         </div>
         <div id="pac-container">
-            <input id="pac-input" type="text" placeholder="Enter a location" />            
+            <input id="pac-input" type="text" placeholder="Enter a location" />
         </div>
     </div>
-    <div id="map">MAP AREA</div>
+    
     <div id="infowindow-content">
         <span id="place-name" class="title"></span><br />
         <span id="place-address"></span>
@@ -60,6 +61,10 @@
      and consistent behavior across browsers, consider loading using Promises
      with https://www.npmjs.com/package/@googlemaps/js-api-loader.
     -->
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC-kzSiVJGj_u4a6wVG0t5rLNTt_3bFNQ&libraries=places&callback=initAutocomplete"
+        async>
+        </script>
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC-kzSiVJGj_u4a6wVG0t5rLNTt_3bFNQ&callback=initMap&libraries=places&v=weekly"
         defer></script>
