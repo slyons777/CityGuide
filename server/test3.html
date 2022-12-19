@@ -4,7 +4,7 @@
     <title>Event Click LatLng</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="./style.css" /> -->
     <!-- <script type="module" src="./geocoding.js"></script> -->
 
     <style>
@@ -33,10 +33,25 @@
 <body>
     <input id="autocomplete" placeholder="type a place" type="text" style="width: 500px" />
     <p id="details"></p>
+    <form method="get" action="/api/weather">
+        <input type="submit">
+    </form>
     <div id="map">MAP AREA</div>
+
     <script>
         let autocomplete;
         let map;
+        let myLatlng = localStorage.getItem('loc');
+
+        if (!myLatlng) {
+            myLatlng = { lat: 47.6062095, lng: -122.3320708 };
+            console.log("loc before set", myLatlng);
+            localStorage.setItem('loc', JSON.stringify(myLatlng));
+        } else {
+            myLatlng = localStorage.getItem('loc');
+            myLatlng = JSON.parse(myLatlng);
+        }
+
         function initAutocomplete() {
             autocomplete = new google.maps.places.Autocomplete(
                 document.getElementById('autocomplete'),
@@ -48,7 +63,6 @@
 
             autocomplete.addListener("place_changed", onPlaceChanged);
 
-            const myLatlng = { lat: 47.6062095, lng: -122.3320708 };
             map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 11,
                 center: myLatlng,
@@ -98,8 +112,6 @@
 
 
     </script>
-
-    <div id="map"></div>
 
     <!-- 
      The `defer` attribute causes the callback to execute after the full HTML

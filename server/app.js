@@ -1,11 +1,14 @@
 const express = require("express"); // to get the dependency into the app
 const app = express(); // for the express functionality use app
+const path = require('path');
 require('dotenv').config()
 const PORT = process.env.PORT; //port to listen make it PORT capitalize because it will be hiden because anything inside the .env file will be hiden so hacker will not know the port using
 // will use 3000 if cannot find .env.PORT
 
-app.get("/", () => {
+app.get("/", (req, res) => {
     console.log("App is getting to the Home Page");
+    res.sendFile(path.join(__dirname+'/test3.html'));
+   
 }); //create read update delete
 
 
@@ -18,13 +21,15 @@ app.get("/api/weather", (req, res) => {
         `http://api.weatherapi.com/v1/${searchType}.json?key=${WEATHER_API_KEY}&q=${location}`
     )
         .then((response) => response.json())
-        .then((data) => { console.log("Response: ", data); })
+        .then((data) => { 
+            console.log("Weather Location: ", JSON.parse(window.localStorage.getItem('loc'))) 
+        })
         .catch(err => console.error('error', err));
 
 });
 
 //TRAIL API:
-app.get('/api/trails', () => {
+app.get('/api/trails', (req, res) => {
     const TRAIL_API_KEY = process.env.TRAIL_API_KEY;
     const options = {
         method: 'GET',
@@ -62,10 +67,10 @@ app.get("/api/places", (req, res) => {
     const PLACES_API_KEY = process.env.PLACES_API_KEY;
 
     fetch(`https://api.geoapify.com/v2/places?categories=tourism.sights&bias=proximity:-87.6297982,41.8781136&limit=5&apiKey=${PLACES_API_KEY}`).then(response => response.json())
-    .then(result => {
-        console.log(JSON.stringify(result, undefined, 4));
-    })
-    .catch(err => console.log('error', err));
+        .then(result => {
+            console.log(JSON.stringify(result, undefined, 4));
+        })
+        .catch(err => console.log('error', err));
 });
 
 app.listen(PORT, () => {
