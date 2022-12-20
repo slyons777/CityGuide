@@ -124,6 +124,7 @@ body {
   width: 400px;
   font-size: 1.2rem;
   text-align: center;
+  padding: 5px;
 }
 
 .mainNav input[type="text"] {
@@ -166,6 +167,7 @@ body {
   /* margin: auto; */
   /* max-width: fit-content; */
 }
+
 
 .mainCategoryOptions {
   background-image: linear-gradient(
@@ -228,20 +230,34 @@ body {
 }
 
 .card {
+  column-gap: 20px !important;
   width: 25rem;
   /* justify-items: center; */
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.card-body {
+  display: inline-flex !important;
+  justify-content: space-between;
+}
+
+.card-text {
+  gap: 2px;
+  display: inline-flex;
+}
+
+.cardAddress {
+  display: flex;
+  margin-left: 5px;
 }
 
 .g-4 {
   margin: 0 auto;
 }
 
-/* .categoryResultCard {
-  background-image: linear-gradient(
-    to bottom right,
-    rgba(10, 59, 10, 0.3) 0%,
-    rgba(180, 109, 109, 0.1) 100%
-  );
+.categoryResultCard {
+  background-color: none !important;
   backdrop-filter: blur(6px);
   border-radius: 40px;
   width: 30rem;
@@ -253,7 +269,7 @@ body {
   /* padding: 60px; */
 /* box-shadow: rgba(66, 68, 57, 0.5) -20px -20px 45px inset,
     rgba(0, 0, 0, 0.1) 10px 10px 20px, rgba(0, 0, 0, 0.06) 5px 5px 10px; */
-/* } */
+}
 
 h2 {
   font-size: 2em;
@@ -275,8 +291,8 @@ h2 {
 } */
 
 .categoryButton {
-  display: inline-block;
-  padding: 1.5em 2em;
+  display: inline-flex;
+  padding: 0.5em 1em;
   background-image: linear-gradient(
     -45deg,
     rgb(44, 66, 103) 0%,
@@ -284,12 +300,16 @@ h2 {
   );
   text-decoration: none;
   font-weight: 900;
-
-  font-size: 12px;
+  width: fit-content;
+  font-size: 10px;
   letter-spacing: 0.3em;
   border-radius: 10em;
   color: white;
   font-family: "Prosto One", cursive;
+}
+
+.mapButton {
+  margin: 0 auto;
 }
 
 .categoryFood {

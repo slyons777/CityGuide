@@ -17,7 +17,7 @@ const App = () => {
       <ImageFour />
       <ImageFive />
       <CategoryResults />
-
+    
       <Footer />
     </div>
   );

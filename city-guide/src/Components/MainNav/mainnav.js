@@ -1,6 +1,5 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 
 // map react component import
 import PlacesAutocomplete from "react-places-autocomplete";
@@ -12,38 +11,39 @@ import {
 } from "react-places-autocomplete";
 
 const MainNav = () => {
-  // function categoryShow(e){
-  //   e.preventDefault();
-  //   document.querySelector('.card-group')
-  // }
-
   const [address, setAddress] = React.useState("");
-  const [cooordinates, setCoordinates] = React.useState({lat: null,
-  lng: null})
+  // const [cooordinates, setCoordinates] = React.useState({
+  //   lat: null,
+  //   lng: null,
+  // });
 
-  const handleSelect = async value => {
+  const handleSelect = async (value) => {
     // Lat and Long coordinate pull if we need them
     // const results = await geocodeByAddress(value);
     // const latLng = await getLatLng(results[0]);
-
-    // setAddress(value);
+    setAddress(value);
     // setCoordinates(latLng);
+  };
+
+  const handleChange = async (value) => {
+    setAddress(value);
   };
 
   return (
     <Container>
       <div className="mainNav">
         {/* <Form className="mainNav">
-          <Form.Control
-            type="search"
-            placeholder="Where would you like to go?"
-            className="me-2"
-            aria-label="Search"
-          /> */}
+            <Form.Control
+              type="search"
+              placeholder="Where would you like to go?"
+              className="me-2"
+              aria-label="Search"
+            /> */}
 
         <PlacesAutocomplete
           value={address}
-          onChange={setAddress}
+          onChange={handleChange}
+          // onSelect={handleSelect}
           onSelect={handleSelect}
         >
           {({
@@ -54,24 +54,29 @@ const MainNav = () => {
           }) => (
             <div>
               {/* <p>Latitude: {cooordinates.lat}</p>
-              <p>Longitude: {cooordinates.lng}</p> */}
+                <p>Longitude: {cooordinates.lng}</p> */}
 
               <input
                 {...getInputProps({
                   placeholder: "Where would you like to go?",
                 })}
               />
-              <a
-                href="#"
-                className="categoryButton"
-              >
-                SEARCH
-              </a>
               <div>
-                {loading ? <div>...just a moment</div> : null}
+                {loading && <div>Just a moment...</div>}
 
                 {suggestions.map((suggestion) => {
-                  return <div>{suggestion.description}</div>;
+                  const style = suggestion.active
+                    ? {
+                        backgroundColor: "gray",
+                        cursor: "pointer",
+                      }
+                    : { backgroundColor: "none", cursor: "pointer" };
+
+                  return (
+                    <div {...getSuggestionItemProps(suggestion, { style })}>
+                      {suggestion.description}
+                    </div>
+                  );
                 })}
               </div>
             </div>
@@ -79,11 +84,11 @@ const MainNav = () => {
         </PlacesAutocomplete>
 
         {/* <a
-          href="#"
-          className="categoryButton"
-        >
-          SEARCH
-        </a> */}
+            href="#"
+            className="categoryButton"
+          >
+            SEARCH
+          </a> */}
         {/* </Form> */}
       </div>
     </Container>
