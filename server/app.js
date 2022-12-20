@@ -2,13 +2,19 @@ const express = require("express"); // to get the dependency into the app
 const app = express(); // for the express functionality use app
 const path = require('path');
 require('dotenv').config()
+const axios = require('axios');
 const PORT = process.env.PORT; //port to listen make it PORT capitalize because it will be hiden because anything inside the .env file will be hiden so hacker will not know the port using
 // will use 3000 if cannot find .env.PORT
 
+var fs = require('fs');
+
+// file is included here:
+eval(fs.readFileSync('./location-data.js')+'');
+
+storeLocation({lat:55, lng:55});
+
 app.get("/", (req, res) => {
     console.log("App is getting to the Home Page");
-    res.sendFile(path.join(__dirname+'/test3.html'));
-   
 }); //create read update delete
 
 
@@ -17,15 +23,16 @@ app.get("/api/weather", (req, res) => {
     const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
     const searchType = "current";
     const location = "London";
-    fetch(
-        `http://api.weatherapi.com/v1/${searchType}.json?key=${WEATHER_API_KEY}&q=${location}`
-    )
-        .then((response) => response.json())
-        .then((data) => { 
-            console.log("Weather Location: ", JSON.parse(window.localStorage.getItem('loc'))) 
+    let coords = req.params.loc;
+    console.log("RECEIVED COORDS: ", coords);
+    return axios.get(
+        `http://api.weatherapi.com/v1/${searchType}.json?key=${WEATHER_API_KEY}&q=${location}`,
+        {
+            headers: { "Accept-Encoding": "gzip,deflate,compress" },
         })
-        .catch(err => console.error('error', err));
-
+        .then(response => {
+            
+            res.send(response.data)});
 });
 
 //TRAIL API:
