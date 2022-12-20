@@ -4,6 +4,8 @@ import CategoryCards from "../CategoryCards/categoryCards";
 import LandingHeader from "../LandingHeader/landingHeader";
 import MainNav from "../MainNav/mainnav";
 
+import CategoryResults from "../CategoryResultCards/categoryResultCards";
+
 const MainPageBG = () => {
   return (
     <div className="parallaxImg">
@@ -19,6 +21,7 @@ const MainPageBG = () => {
           <LandingHeader />
           <MainNav />
           <CategoryCards />
+          {/* <CategoryResults /> */}
         </div>
       </div>
     </div>

@@ -4,6 +4,9 @@ import ImageThree from "./Components/ImageThree";
 import MainPageBG from "./Components/MainPage/MainPage";
 import ImageFour from "./Components/ImageFour";
 import ImageFive from "./Components/ImageFive";
+import Footer from "./Components/Footer/footer";
+import CategoryResults from "./Components/CategoryResultCards/categoryResultCards";
+
 
 const App = () => {
   return (
@@ -13,6 +16,9 @@ const App = () => {
       <ImageThree />
       <ImageFour />
       <ImageFive />
+      <CategoryResults />
+
+      <Footer />
     </div>
   );
 };

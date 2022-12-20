@@ -1,13 +1,20 @@
 // import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import CardGroup from "react-bootstrap/CardGroup";
+import { MdHotel } from "react-icons/md";
+import { MdRestaurant } from "react-icons/md";
+import { MdOutlineAttractions } from "react-icons/md";
+import { WiThermometer } from "react-icons/wi";
+import { BsTreeFill } from "react-icons/bs";
 
 const CategoryCards = () => {
   return (
     <Container>
       <CardGroup>
-        <section className="panel">
-          <h2 className="categoryFood">Food</h2>
+        <section className="mainCategoryOptions">
+          <h1 className="categoryFood">
+            <MdRestaurant />
+          </h1>
           {/* <a
             href="#"
             className="categoryButton"
@@ -15,8 +22,10 @@ const CategoryCards = () => {
             Button
           </a> */}
         </section>
-        <section className="panel">
-          <h2 className="categoryWeather">Weather</h2>
+        <section className="mainCategoryOptions">
+          <h1 className="categoryWeather">
+            <WiThermometer />
+          </h1>
           {/* <a
             href="#"
             className="categoryButton"
@@ -24,8 +33,12 @@ const CategoryCards = () => {
             Button
           </a> */}
         </section>
-        <section className="panel">
-          <h2 className="categoryStay">Stay</h2>
+        <section className="mainCategoryOptions">
+          <div>
+            <h1 className="categoryStay">
+              <MdHotel />
+            </h1>
+          </div>
           {/* <a
             href="#"
             className="categoryButton"
@@ -33,8 +46,10 @@ const CategoryCards = () => {
             Button
           </a> */}
         </section>
-        <section className="panel">
-          <h2 className="categoryOutdoors">Outdoors</h2>
+        <section className="mainCategoryOptions">
+          <h1 className="categoryOutdoors">
+            <BsTreeFill />
+          </h1>
           {/* <a
             href="#"
             className="categoryButton"
@@ -42,8 +57,10 @@ const CategoryCards = () => {
             Button
           </a> */}
         </section>
-        <section className="panel">
-          <h2 className="categoryAttractions">Attractions</h2>
+        <section className="mainCategoryOptions">
+          <h1 className="categoryAttractions">
+            <MdOutlineAttractions />
+          </h1>
           {/* <a
             href="#"
             className="categoryButton"
@@ -59,7 +76,7 @@ const CategoryCards = () => {
 export default CategoryCards;
 
 // <CardGroup>
-//   <section className="panel">
+//   <section className="mainCategoryOptions">
 //     <Card className="categoryFood">
 {
   /* <Card.Img
