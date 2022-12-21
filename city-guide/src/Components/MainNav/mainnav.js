@@ -12,15 +12,15 @@ import {
 
 const MainNav = () => {
   const [address, setAddress] = React.useState("");
-  // const [cooordinates, setCoordinates] = React.useState({
-  //   lat: null,
-  //   lng: null,
-  // });
+  const [cooordinates, setCoordinates] = React.useState({
+    lat: null,
+    lng: null,
+  });
 
   const handleSelect = async (value) => {
     // Lat and Long coordinate pull if we need them
-    // const results = await geocodeByAddress(value);
-    // const latLng = await getLatLng(results[0]);
+    const results = await geocodeByAddress(value);
+    const latLng = await getLatLng(results[0]);
     setAddress(value);
     // setCoordinates(latLng);
   };

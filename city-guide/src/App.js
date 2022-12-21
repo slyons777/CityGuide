@@ -6,19 +6,27 @@ import ImageFour from "./Components/ImageFour";
 import ImageFive from "./Components/ImageFive";
 import Footer from "./Components/Footer/footer";
 import CategoryResults from "./Components/CategoryResultCards/categoryResultCards";
+import Row from "react-bootstrap/esm/Row";
+import getWeatherCards from "./Components/WeatherCards/WeatherCards";
 
 
-const App = () => {
+function App() {
   return (
     <div className="App">
       <MainPageBG />
-      <ImageTwo />
+     
+          {/* <ImageTwo />
+          <ImageThree />
+          <ImageFour />
+          <ImageFive /> */}
+      {/* <ImageTwo />
       <ImageThree />
       <ImageFour />
-      <ImageFive />
-      <CategoryResults />
-    
-      <Footer />
+      <ImageFive /> */}
+      {/* <CategoryResults /> */}
+
+      {/* <Footer /> */}
+      <row><getWeatherCards /></row>
     </div>
   );
 };

@@ -33,19 +33,19 @@ const CategoryCards = () => {
             Button
           </a> */}
         </section>
-        <section className="mainCategoryOptions">
+        {/* <section className="mainCategoryOptions">
           <div>
             <h1 className="categoryStay">
               <MdHotel />
             </h1>
-          </div>
+          </div> */}
           {/* <a
             href="#"
             className="categoryButton"
           >
             Button
           </a> */}
-        </section>
+        {/* </section> */}
         <section className="mainCategoryOptions">
           <h1 className="categoryOutdoors">
             <BsTreeFill />

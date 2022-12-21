@@ -14,8 +14,6 @@ function RestaurantImage(prop) {
 
     return (
         <img src={url} alt="Restaurant" />
-
-        
     )
 }
 
