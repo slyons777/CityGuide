@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const getPlacesData = async (type, sw, ne) => {
+  debugger;
   try {
     const {
       data: { data },
@@ -15,14 +16,16 @@ export const getPlacesData = async (type, sw, ne) => {
         },
         headers: {
           "x-rapidapi-key":
-            "8a24f0daf1msh68fdb3db3dfb83cp1085bfjsnac83c9c341bb",
+            "6b78c1d125mshdbc3c6440bfefb8p1edea6jsn952ebc898a53",
           "x-rapidapi-host": "travel-advisor.p.rapidapi.com",
         },
       }
     );
+    debugger;
 
     return data;
   } catch (error) {
+    debugger;
     console.log(error);
   }
 };

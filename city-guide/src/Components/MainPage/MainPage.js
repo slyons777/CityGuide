@@ -14,17 +14,22 @@ import PlaceDetails from "../PlaceDetails/PlaceDetails";
 import Map from "../Map/Map";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/Row";
+import { getPlacesData } from "../../api/travelAdvisorAPI"
 
 const MainPageBG = () => {
-  const [categories, setCategories] = useState([]);
+  const [type, setType] = useState('restaurants');
+  const [places, setPlaces] = useState([]);
+  // const [coords, setCoords] = useState({});
+  //   const [bounds, setBounds] = useState(null);
 
   useEffect(() => {
-    placeAPI
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => setCategories(data));
-  });
+    var southWest = {lat: 36.90731625763393, lng: -86.51778523864743};
+    var northEast = {lat: 37.02763411292923, lng: -86.37183015289304}; 
+    getPlacesData(type, southWest, northEast)
+      .then((data) => {
+        setPlaces(data)
+      }).catch((err)=>console.log(err));
+  },[type]);
 
   return (
     <div className="mainPageBG">
@@ -40,9 +45,8 @@ const MainPageBG = () => {
           sticky={{ start: 0.55 }}
           style={{ textAlign: "center", marginLeft: "22em" }}
         >
-          {/* <CategoryCards /> */}
-          {/* {categories.map(category => categoryCard)} */}
-          {/* <Map /> */}
+          {/* <CategoryCards /> 
+           {/* /*  <Map /> */}
         </ParallaxLayer>
         <ParallaxLayer
           sticky={{ start: 0.99 }}
@@ -58,9 +62,11 @@ const MainPageBG = () => {
               md={4}
               className="g-4"
             >
-              {categories.map((category) => (
-                <PlaceDetails category={category} />
+              {places.map((place, index) => (
+                <PlaceDetails key={index} place={place} />
               ))}
+
+              
             </Row>
           </Container>
         </ParallaxLayer>
