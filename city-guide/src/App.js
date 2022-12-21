@@ -8,14 +8,14 @@ import Footer from "./Components/Footer/footer";
 import CategoryResults from "./Components/CategoryResultCards/categoryResultCards";
 import Row from "react-bootstrap/esm/Row";
 import getWeatherCards from "./Components/WeatherCards/WeatherCards";
-
+import LandingHeader from "./Components/LandingHeader/landingHeader";
 
 function App() {
   return (
     <div className="App">
       <MainPageBG />
-     
-          {/* <ImageTwo />
+
+      {/* <ImageTwo />
           <ImageThree />
           <ImageFour />
           <ImageFive /> */}
@@ -26,9 +26,8 @@ function App() {
       {/* <CategoryResults /> */}
 
       {/* <Footer /> */}
-      <row><getWeatherCards /></row>
     </div>
   );
-};
+}
 
 export default App;

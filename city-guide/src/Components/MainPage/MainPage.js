@@ -1,97 +1,70 @@
 import React from "react";
 import background from "../../assets/bg.mp4";
-import Container from "react-bootstrap/esm/Container";
 import mountain from "../../images/mountain.jpg";
 import temple from "../../images/temple.jpg";
 import gate from "../../images/gate.jpg";
 import france from "../../images/france.jpg";
-
 import CategoryCards from "../CategoryCards/categoryCards";
 import LandingHeader from "../LandingHeader/landingHeader";
 import MainNav from "../MainNav/mainnav";
-
 import CategoryResults from "../CategoryResultCards/categoryResultCards";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import Footer from "../Footer/footer";
 
 const MainPageBG = () => {
   return (
-    // <div className="parallaxImg">
-    //   <div className="mainPageBg">
-    //     <div className="overlay"></div>
-    //     <video
-    //       src={background}
-    //       autoPlay
-    //       loop
-    //       muted
-    //     />
-    //     <div className="content">
-    //       <LandingHeader />
-    //       <MainNav />
-    //       <CategoryCards />
-    //       {/* <CategoryResults /> */}
-    //     </div>
-    //   </div>
-    // </div>
-
-    <div>
-      {/* <div className="overlay"></div> */}
-      <Parallax pages={9}>
+    <div className="mainPageBG">
+      <Parallax pages={5}>
         <ParallaxLayer
-          sticky={{ start: 0.1 }}
+          sticky={{ start: 0.1, end: 0.1 }}
           style={{ textAlign: "center" }}
         >
           <LandingHeader />
           <MainNav />
         </ParallaxLayer>
-
         <ParallaxLayer
-          sticky={{ start: 0.5 }}
-          style={{ textAlign: "center",
-          marginLeft: "22em", }}
-
+          sticky={{ start: 0.55 }}
+          style={{ textAlign: "center", marginLeft: "22em" }}
         >
           <CategoryCards />
         </ParallaxLayer>
-
         <ParallaxLayer
-          sticky={{ start: 0.8 }}
-          style={{ textAlign: "center" }}
+          sticky={{ start: 0.99 }}
+          style={{
+            textAlign: "center",
+            marginRight: "auto",
+            marginLeft: "auto",
+          }}
         >
           <CategoryResults />
         </ParallaxLayer>
-
         <ParallaxLayer
           offset={0}
-          speed={1}
+          style={{ textAlign: "center", backgroundSize: "cover" }}
         >
           <video
-            // className="mainPageBg"
             src={background}
             autoPlay
             loop
             muted
           />
         </ParallaxLayer>
-
         <ParallaxLayer
           className="mountainImg"
-          offset={1}
-          speed={0.5}
+          offset={0.99}
+          speed={0.9}
           style={{
             backgroundImage: `url(${mountain})`,
             backgroundSize: "cover",
             overflow: "hidden",
           }}
-        />
-
-        <ParallaxLayer
+        ></ParallaxLayer>
+        {/* <ParallaxLayer
           sticky={{ start: 0.5, end: 2.5 }}
           style={{ textAlign: "center" }}
-        >
-          {/* <CategoryResults /> */}
-        </ParallaxLayer>
+        ></ParallaxLayer> */}
         <ParallaxLayer
-          offset={2}
+          offset={1}
           speed={1}
           style={{
             backgroundImage: `url(${temple})`,
@@ -99,7 +72,7 @@ const MainPageBG = () => {
           }}
         ></ParallaxLayer>
         <ParallaxLayer
-          offset={3}
+          offset={1.99}
           speed={1}
           style={{
             backgroundImage: `url(${gate})`,
@@ -107,14 +80,13 @@ const MainPageBG = () => {
           }}
         ></ParallaxLayer>
         <ParallaxLayer
-          offset={4}
+          offset={1.99}
           speed={1}
           style={{
             backgroundImage: `url(${france})`,
             backgroundSize: "cover",
           }}
         ></ParallaxLayer>
-        <ParallaxLayer></ParallaxLayer>
       </Parallax>
     </div>
   );

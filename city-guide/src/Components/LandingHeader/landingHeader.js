@@ -1,6 +1,6 @@
 import Container from "react-bootstrap/Container";
 
-const LandingHeader = () =>  {
+const LandingHeader = () => {
   return (
     <Container>
       <div className="word">
@@ -12,6 +12,6 @@ const LandingHeader = () =>  {
       </div>
     </Container>
   );
-}
+};
 
 export default LandingHeader;
