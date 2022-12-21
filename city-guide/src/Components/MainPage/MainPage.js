@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import background from "../../assets/bg.mp4";
 import mountain from "../../images/mountain.jpg";
 import temple from "../../images/temple.jpg";
@@ -7,11 +7,25 @@ import france from "../../images/france.jpg";
 import CategoryCards from "../CategoryCards/categoryCards";
 import LandingHeader from "../LandingHeader/landingHeader";
 import MainNav from "../MainNav/mainnav";
-import CategoryResults from "../CategoryResultCards/categoryResultCards";
+// import CategoryResults from "../CategoryResultCards/categoryResultCards";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-import Footer from "../Footer/footer";
+// import Footer from "../Footer/footer";
+import PlaceDetails from "../PlaceDetails/PlaceDetails";
+import Map from "../Map/Map";
+import Container from "react-bootstrap/esm/Container";
+import Row from "react-bootstrap/Row";
 
 const MainPageBG = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    placeAPI
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => setCategories(data));
+  });
+
   return (
     <div className="mainPageBG">
       <Parallax pages={5}>
@@ -26,7 +40,9 @@ const MainPageBG = () => {
           sticky={{ start: 0.55 }}
           style={{ textAlign: "center", marginLeft: "22em" }}
         >
-          <CategoryCards />
+          {/* <CategoryCards /> */}
+          {/* {categories.map(category => categoryCard)} */}
+          {/* <Map /> */}
         </ParallaxLayer>
         <ParallaxLayer
           sticky={{ start: 0.99 }}
@@ -36,7 +52,17 @@ const MainPageBG = () => {
             marginLeft: "auto",
           }}
         >
-          <CategoryResults />
+          <Container>
+            <Row
+              xs={6}
+              md={4}
+              className="g-4"
+            >
+              {categories.map((category) => (
+                <PlaceDetails category={category} />
+              ))}
+            </Row>
+          </Container>
         </ParallaxLayer>
         <ParallaxLayer
           offset={0}

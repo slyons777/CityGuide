@@ -5,7 +5,7 @@ import MainPageBG from "./Components/MainPage/MainPage";
 import ImageFour from "./Components/ImageFour";
 import ImageFive from "./Components/ImageFive";
 import Footer from "./Components/Footer/footer";
-import CategoryResults from "./Components/CategoryResultCards/categoryResultCards";
+// import CategoryResults from "./Components/PlaceDetails/categoryResultCards";
 import Row from "react-bootstrap/esm/Row";
 import getWeatherCards from "./Components/WeatherCards/WeatherCards";
 import LandingHeader from "./Components/LandingHeader/landingHeader";
