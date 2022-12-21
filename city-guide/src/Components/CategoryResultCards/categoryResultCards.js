@@ -14,7 +14,7 @@ function CategoryResults() {
         md={4}
         className="g-4"
       >
-        {Array.from({ length: 3 }).map((_, idx) => (
+        {/* {Array.from({ length: 3 }).map((_, idx) => (
           <Col className="categoryResultCard">
             <Card>
               <img
@@ -53,7 +53,7 @@ function CategoryResults() {
               </div>
             </Card>
           </Col>
-        ))}
+        ))} */}
       </Row>
     </Container>
   );
