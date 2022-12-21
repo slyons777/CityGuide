@@ -2,7 +2,7 @@ let myLoc;
 
 function storeLocation(loc) {
     myLoc = loc;
-    console.log("NEW LOCATION: ", loc);
+    // console.log("NEW LOCATION: ", loc);
 }
 
 function getLocation(){

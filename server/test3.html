@@ -39,9 +39,11 @@
     <input id="autocomplete" placeholder="type a place" type="text" style="width: 500px" />
     <p id="details"></p>
 
-    <form onSubmit="doThis(hiddenData)">
-        <input type='hidden' name='hiddenData' value='ABC123'>
-    </form>
+    <div id="infowindow-content">
+        <span id="place-name" class="title"></span><br />
+        <span id="place-address"></span>
+    </div>
+
     <button onclick="getWeather()">Weather</button>
     <p id="weatherDetails"></p>
 
@@ -62,11 +64,10 @@
         let myLatlng = localStorage.getItem('loc');
 
         function getWeather() {
-            google.script.run.getLocation();
-            fetch("/api/weather")
+            fetch("localhost:3000/api/weather")
                 .then((response) => response.json())
                 .then((data) => {
-                    // console.log("Weather Worked: ", data);
+                    console.log("Weather Worked: ", data);
                 })
                 .catch(err => console.error('error', err));
         }
@@ -74,18 +75,15 @@
         if (!myLatlng) {
             myLatlng = { lat: 47.6062095, lng: -122.3320708 };
             localStorage.setItem('loc', JSON.stringify(myLatlng));
+            storeLocation(myLatlng);
         } else {
             myLatlng = localStorage.getItem('loc');
             myLatlng = JSON.parse(myLatlng);
-        }        
+            storeLocation(myLatlng);
+        }
         let marker;
-        let infoWindow; 
+        let infoWindow;
         function initAutocomplete() {
-            marker = new google.maps.Marker({
-                map,
-                anchorPoint: new google.maps.Point(47.6062095, -122.3320708),
-            });
-
             autocomplete = new google.maps.places.Autocomplete(
                 document.getElementById('autocomplete'),
                 {
@@ -101,36 +99,44 @@
                 center: myLatlng,
                 gestureHandling: "cooperative",
             });
-            // Create the initial InfoWindow.
-            infoWindow = new google.maps.InfoWindow({
-                content: "Click the map to get Lat/Lng!",
+            marker = new google.maps.Marker({
                 position: myLatlng,
+                map,
+                title: "Hello World!",
             });
-            
-            infoWindow.open(map);
+            // Create the initial InfoWindow.
+            // infoWindow = new google.maps.InfoWindow({
+            //     // content: "Click the map to get Lat/Lng!",
+            //     position: myLatlng,
+            // });
+
+            // infoWindow.open(map);
             // Configure the click listener.
             map.addListener("click", (mapsMouseEvent) => {
+                marker.setVisible(false);
                 // Close the current InfoWindow.
-                infoWindow.close();
-                // Create a new InfoWindow.
-                infoWindow = new google.maps.InfoWindow({
-                    position: mapsMouseEvent.latLng,
-                });
-                infoWindow.setContent(
-                    JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-                );
+                // infoWindow.close();
+                // // Create a new InfoWindow.
+                // infoWindow = new google.maps.InfoWindow({
+                //     position: mapsMouseEvent.latLng,
+                // });
+                // infoWindow.setContent(
+                //     JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+                // );
                 var coords = JSON.stringify(mapsMouseEvent.latLng.toJSON());
                 coords = JSON.parse(coords);
 
                 jumpToLocation(coords["lat"], coords["lng"]);
+                var place = autocomplete.getPlace();
+                marker.setPosition( mapsMouseEvent.latLng);
+                marker.setVisible(true);
 
-                infoWindow.open(map);
+                // infoWindow.open(map);
             });
         }
 
         function onPlaceChanged() {
             let place = autocomplete.getPlace();
-            marker.setVisible(false);
 
             if (!place.geometry) {
                 // user did not select a prediction, then reset input field
@@ -144,7 +150,7 @@
             }
             marker.setPosition(place.geometry.location);
             marker.setVisible(true);
-            infowindow.open(map, marker);
+            // infowindow.open(map, marker);
         }
 
         function jumpToLocation(lat, lng) {
@@ -160,8 +166,6 @@
             storeLocation(myLatlng);
         }
     </script>
-
-
 
     <!-- 
      The `defer` attribute causes the callback to execute after the full HTML
