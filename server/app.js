@@ -96,7 +96,6 @@ app.get("/api/food", (req, res) => {
     const location = [47.6062095, -122.3320708];
     const searchTerm = 'restaurants';
     const sortBy = 'best_match';
-
     const options = {
         method: 'GET',
         url: 'https://api.yelp.com/v3/businesses/search',
