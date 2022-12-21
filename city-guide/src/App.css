@@ -11,7 +11,7 @@
 }
 
 .container {
-  max-width: 1240px;
+  max-width: max-content;
   margin: auto;
   padding: 0 1rem;
 }
@@ -57,7 +57,6 @@ a {
   align-items: center;
   justify-content: space-between;
   overflow: visible;
-  
 }
 
 video {
@@ -101,13 +100,13 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed; */
-  background-image: url("https://joy1.videvo.net/videvo_files/video/free/2019-04/large_watermarked/190312_20_StPetersBasilicaSquare_Drone_003_preview.mp4");
 }
 
 .mainNav {
   display: flex;
   margin: auto;
-  margin-top: 80px;
+  margin-bottom: 80px !important;
+  margin-top: 50px !important;
   max-width: 700px;
   background-color: #ffffffcc;
   color: black;
@@ -116,7 +115,7 @@ body {
   padding: 3px;
   border-radius: 8px;
 
-  margin: 0 auto;
+ 
 }
 
 .mainNav input[type="text"] {
@@ -162,15 +161,13 @@ body {
 .card-group {
   /* gap: 10px; */
   display: inline-flex;
-  
-  gap:2rem;
+  margin-top: 50px !important;
+  gap: 2rem;
   text-align: center;
   /* margin-left: 20px;
   margin-right: 20px; */
   margin: 0 auto;
-  
 }
-
 
 .mainCategoryOptions {
   background-image: linear-gradient(
@@ -180,7 +177,7 @@ body {
   );
   backdrop-filter: blur(6px);
   border-radius: 40px;
-  
+
   gap: 3px;
   /* margin: 0 auto; */
   border-top: 1px solid rgba(255, 255, 255, 0.5);
@@ -208,14 +205,13 @@ body {
   } */
 }
 
-/* .row {
-  gap: 4px;
+.row {
+  /* gap: 25px; */
   margin: 0 auto;
-} */
+}
 
 .col {
   width: fit-content !important;
-
   background-image: linear-gradient(
     to bottom right,
     rgba(10, 59, 10, 0.3) 0%,
@@ -240,6 +236,10 @@ body {
   border: none !important;
 }
 
+img {
+  border-radius: 20px;
+}
+
 .card-body {
   display: inline-flex !important;
   justify-content: space-between;
@@ -247,12 +247,13 @@ body {
 
 .card-text {
   gap: 2px;
+  margin-left: 4px !important;
   display: inline-flex;
 }
 
 .cardAddress {
   display: flex;
-  margin-left: 5px;
+  margin-left: 15px !important;
 }
 
 .g-4 {
@@ -260,17 +261,20 @@ body {
 }
 
 .categoryResultCard {
+  margin-top: 8em !important;
   background-color: none !important;
   backdrop-filter: blur(6px);
   border-radius: 40px;
-  width: 30rem;
+  width: 40rem;
   padding: 30px;
   color: white;
   margin: 0 auto;
+  margin-bottom: 20px;
+
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   /* padding: 60px; */
-/* box-shadow: rgba(66, 68, 57, 0.5) -20px -20px 45px inset,
+  /* box-shadow: rgba(66, 68, 57, 0.5) -20px -20px 45px inset,
     rgba(0, 0, 0, 0.1) 10px 10px 20px, rgba(0, 0, 0, 0.06) 5px 5px 10px; */
 }
 
@@ -298,8 +302,8 @@ h2 {
   padding: 0.5em 1em;
   background-image: linear-gradient(
     -45deg,
-    rgb(44, 66, 103) 0%,
-    rgb(14, 57, 47) 100%
+    rgb(49, 101, 192) 0%,
+    rgb(28, 154, 125) 100%
   );
   text-decoration: none;
   font-weight: 900;
