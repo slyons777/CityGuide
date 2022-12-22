@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="autocomplete" placeholder="type a place" type="text" style="width: 500px" />
+    <p id="details"></p>
+    <script>
+               let autocomplete;
+                function initAutocomplete() {
+                    autocomplete = new google.maps.places.Autocomplete(
+                        document.getElementById('autocomplete'),
+                        {
+                            types: ['(cities)'],
+                            componentRestricitons: { 'country': ['US'] },
+                            fields: ['place_id', 'geometry', 'name']
+                        });
+    
+                        autocomplete.addListener("place_changed", onPlaceChanged);
+                }
+    
+                function onPlaceChanged() {
+                    let place = autocomplete.getPlace();
+    
+                    if(!place.geometry) {
+                        // user did not select a prediction, then reset input field
+                        document.querySelector("#autocomplete").setAttribute("placeholder", "Enter a Place");
+                    } else {
+                        // Display location details about a valid place
+                        document.getElementById("details").innerHTML = `Name: ${JSON.stringify(place)}.  Location: ${place.geometry.location}`;
+                    }
+                }
+    </script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC-kzSiVJGj_u4a6wVG0t5rLNTt_3bFNQ&libraries=places&callback=initAutocomplete"
+        async defer>
+        </script>
+
+</body>
+
+</html>

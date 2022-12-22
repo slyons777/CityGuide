@@ -1,38 +1,793 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css?family=Anton|Roboto");
+
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comfortaa:wght@500&family=Mansalva&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=La+Belle+Aurore&family=Oswald&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Prosto+One&display=swap");
+
+
+
+* {
+
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+
+.container {
+
+  max-width: max-content;
+
+  margin: auto;
+
+  padding: 0 1rem;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+
+ul {
+
+  list-style-type: none;
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+
+a {
+
+  text-decoration: none;
+
+}
+
+
+
+.mainPageBg {
+
   display: flex;
-  flex-direction: column;
+
+  position: absolute;
+
   align-items: center;
+
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+  width: 100%;
+
+  /* height: 100vh; */
+
+}
+
+
+
+.fadeIn {
+
+  animation: fadeIn 5s;
+
+}
+
+
+
+@keyframes fadeIn {
+
+  0% {
+
+    opacity: 0;
+
+  }
+
+  100% {
+
+    opacity: 1;
+
+  }
+
+}
+
+
+
+.content {
+
+  position: absolute;
+
+  width: 100%;
+
+  height: 100%;
+
+  top: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  overflow: visible;
+
+}
+
+
+
+video {
+
+  height: 100vh;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+}
+
+
+
+.parallaxImg {
+
+  position: relative;
+
+  height: 100vh;
+
+}
+
+
+
+.overlay {
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  background-color: rgba(0, 0, 0, 0.3);
+
+}
+
+
+
+
+body {
+
+  align-items: center;
+
+}
+
+
+
+.mainNav {
+
+  display: flex;
+
+  margin: auto;
+
+  margin-bottom: 80px !important;
+
+  margin-top: 50px !important;
+
+  max-width: 700px;
+
+  background-color: #ffffffcc;
+
+  color: black;
+
+  justify-content: space-evenly;
+
+  border: 1px solid #ccc;
+
+  padding: 3px;
+
+  border-radius: 8px;
+
+}
+
+
+
+.mainNav input[type="text"] {
+
+  border: transparent;
+
+  background-color: transparent;
+
+  width: 400px;
+
+  font-size: 1.2rem;
+
+  text-align: center;
+
+  padding: 5px;
+
+}
+
+
+
+.mainNav input[type="text"] {
+
+  outline: none;
+
+}
+
+
+
+@media screen and (max-width: 940px) {
+
+  .mainNav input[type="search"] {
+
+    max-width: 275px;
+
+  }
+
+}
+
+
+
+.headerTagline {
+
+  font-size: 25px;
+
+  font-family: "La Belle Aurore", cursive;
+
   color: white;
+
+  display: flex;
+
+  font-weight: 400;
+
+  font-style: italic;
+
+  text-align: center;
+
 }
 
-.App-link {
-  color: #61dafb;
+
+
+#tag {
+
+  padding-top: 5px;
+
+  margin: auto;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+
+.card-group {
+
+  display: inline-flex;
+  justify-content: center;
+  margin-top: 0px;
+  margin-bottom: 75px !important;
+  scale: 80%;
+
+  gap: 2rem;
+
+  text-align: center;
+
+  /* margin: 0 auto; */
+
+}
+
+
+
+.mainCategoryOptions {
+
+  background-image: linear-gradient(to bottom right,
+
+      rgba(10, 59, 10, 0.3) 0%,
+
+      rgba(180, 109, 109, 0.1) 100%);
+
+  backdrop-filter: blur(6px);
+
+  border-radius: 40px;
+
+
+
+  gap: 3px;
+
+  /* margin: 0 auto; */
+
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+
+  padding: 40px;
+
+  box-shadow: rgba(66, 68, 57, 0.5) -20px -20px 45px inset,
+
+    rgba(0, 0, 0, 0.1) 10px 10px 20px, rgba(0, 0, 0, 0.06) 5px 5px 10px;
+
+}
+
+.spacer {
+  margin-top: 100px;
+}
+
+.row {
+
+  margin: 0 auto;
+
+}
+
+
+
+.MuiPaper-elevation6 {
+
+  background-image: linear-gradient(to bottom right,
+
+      rgba(10, 59, 10, 0.3) 0%,
+
+      rgba(180, 109, 109, 0.1) 100%);
+
+  backdrop-filter: blur(6px) !important;
+
+  border-radius: 40px !important;
+
+  gap: 1px;
+
+  margin: 0 auto;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.5) !important;
+
+  border-left: 1px solid rgba(255, 255, 255, 0.5) !important;
+
+  box-shadow: rgba(66, 68, 57, 0.5) -20px -20px 45px inset,
+
+    rgba(0, 0, 0, 0.1) 10px 10px 20px, rgba(0, 0, 0, 0.06) 5px 5px 10px !important;
+
+}
+
+
+
+.MuiCardContent-root {
+
+  background-color: transparent !important;
+
+  border: none !important;
+
+  height: 20px;
+
+}
+
+
+
+img {
+
+  border-radius: 20px;
+
+}
+
+
+
+.card-body {
+
+  display: inline-flex !important;
+
+  justify-content: space-between;
+
+}
+
+
+
+.MuiTypography-root,
+
+.MuiTypography-h5 {
+
+  margin-bottom: 0 !important;
+
+  display: inline-flex;
+
+  font-size: 1.8rem !important;
+
+  font-family: "La Belle Aurore", cursive !important;
+
+}
+
+
+
+.MuiTypography-root {
+
+  margin-top: 0 !important;
+
+  height: 60px !important;
+
+}
+
+.MuiTypography-subtitle1 {
+
+  font-size: 1.2em !important;
+
+}
+
+
+
+.MuiTypography-body1 {
+
+  font-size: 1em !important;
+
+  font-family: "Prosto", cursive !important;
+
+}
+
+
+
+.price,
+
+.rating {
+
+  margin-bottom: 0 !important;
+
+  justify-content: space-between;
+
+  font-size: 1em !important;
+
+}
+
+
+
+
+.MuiCardActions-root {
+
+  justify-content: space-between;
+
+}
+
+
+
+.cardAddress {
+
+  display: flex;
+
+  margin-left: 15px !important;
+
+}
+
+
+
+.g-4 {
+
+  margin: 0 auto;
+
+}
+
+
+
+.MuiPaper-root {
+
+  margin-top: 8em !important;
+
+  background-color: transparent !important;
+
+  backdrop-filter: blur(8px) !important;
+
+  border-radius: 40px !important;
+
+  width: 40rem !important;
+
+  padding: 30px !important;
+
+  color: white !important;
+
+  margin: 0 auto !important;
+
+  margin-bottom: 10px !important;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+
+  background-image: linear-gradient(to bottom right,
+
+      rgba(90, 191, 90, 0.3) 0%,
+
+      rgba(82, 46, 46, 0.1) 100%) !important;
+
+}
+
+
+
+h2 {
+
+  font-size: 2em;
+
+  font-weight: 1000;
+
+  margin-top: 0;
+
+  justify-content: center;
+
+}
+
+
+
+.categoryButton {
+
+  display: inline-flex;
+
+  padding: 0.5em 1em;
+
+  background-image: linear-gradient(-45deg,
+
+      rgb(49, 101, 192) 0%,
+
+      rgb(28, 154, 125) 100%);
+
+  text-decoration: none;
+
+  font-weight: 900;
+
+  width: fit-content;
+
+  font-size: 10px;
+
+  letter-spacing: 0.3em;
+
+  border-radius: 10em;
+
+  color: white;
+
+  font-family: "Prosto One", cursive;
+
+}
+
+
+
+.mapButton {
+
+  margin: 0 auto;
+
+}
+
+
+
+.categoryFood {
+
+  display: flex;
+
+  color: rgb(87, 137, 112);
+
+
+
+  font-style: italic;
+
+  font-family: "La Belle Aurore", cursive;
+
+}
+
+
+
+.categoryWeather {
+
+  display: flex;
+
+  font-weight: flex;
+
+  color: rgb(87, 137, 112);
+
+  font-family: "La Belle Aurore", cursive;
+
+}
+
+
+
+.categoryStay {
+
+  display: flex;
+
+  color: rgb(87, 137, 112);
+
+  font-family: "La Belle Aurore", cursive;
+
+}
+
+
+
+.categoryOutdoors {
+
+  display: flex;
+
+  color: rgb(87, 137, 112);
+
+  font-family: "La Belle Aurore", cursive;
+
+}
+
+
+
+.categoryAttractions {
+
+  display: flex;
+
+  color: rgb(87, 137, 112);
+
+  font-family: "La Belle Aurore", cursive;
+
+}
+
+
+
+.form-control {
+
+  text-align: center;
+
+}
+
+
+
+.me-2 {
+
+  margin: 0.5rem;
+
+}
+
+
+
+.word {
+
+  margin-top: 25px;
+
+  font-family: "Prosto One", cursive;
+
+  perspective: 1000px;
+
+  text-align: center;
+
+}
+
+
+
+.word span {
+
+  display: inline-flex;
+
+  font-size: 12em;
+
+  line-height: 0.8;
+
+  color: white;
+
+}
+
+
+
+/* Other styles */
+
+body {
+
+  justify-content: center;
+
+  align-items: center;
+
+  flex-direction: row;
+
+  height: 100vh;
+
+}
+
+.search-bar {
+  z-index: 100;
+}
+
+.span {
+
+  display: flex;
+
+}
+
+
+
+.footer {
+
+  width: 100%;
+
+  padding: 2rem 0;
+
+  background-color: #333;
+
+  color: #fff;
+
+}
+
+
+
+.footer h3 {
+
+  color: var(--primary-light);
+
+  font-family: "Prosto One", cursive;
+
+}
+
+
+
+.footer .top,
+
+.bottom {
+
+  display: flex;
+
+  width: 100%;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+}
+
+
+
+.footer .social {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  width: 280px;
+
+}
+
+
+
+.footer .icon {
+
+  color: var(--primary-light);
+
+}
+
+
+
+.footer .left,
+
+.right {
+
+  display: flex;
+
+  align-items: center;
+
+}
+
+
+
+.footer ul {
+
+  display: flex;
+
+}
+
+
+
+.footer li {
+
+  padding: 0.5rem;
+
+}
+
+
+
+@media screen and (max-width: 1140px) {
+
+  .footer ul {
+
+    flex-direction: column;
+
   }
-  to {
-    transform: rotate(360deg);
-  }
+
 }
