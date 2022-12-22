@@ -12,10 +12,10 @@ import {
 
 const MainNav = () => {
   const [address, setAddress] = React.useState("");
-    const [cooordinates, setCoordinates] = React.useState({
-      lat: null,
-      lng: null,
-    });
+  const [cooordinates, setCoordinates] = React.useState({
+    lat: null,
+    lng: null,
+  });
 
   const handleSelect = async (value) => {
     // Lat and Long coordinate pull if we need them
@@ -33,12 +33,12 @@ const MainNav = () => {
     <Container>
       <div className="mainNav">
         {/* <Form className="mainNav">
-            <Form.Control
-              type="search"
-              placeholder="Where would you like to go?"
-              className="me-2"
-              aria-label="Search"
-            /> */}
+            <Form.Control
+              type="search"
+              placeholder="Where would you like to go?"
+              className="me-2"
+              aria-label="Search"
+            /> */}
 
         <PlacesAutocomplete
           value={address}
@@ -54,9 +54,9 @@ const MainNav = () => {
           }) => (
             <div>
               {/* <p>Latitude: {cooordinates.lat}</p>
-                <p>Longitude: {cooordinates.lng}</p> */}
+                <p>Longitude: {cooordinates.lng}</p> */}
 
-              <input
+              <input class="search-bar"
                 {...getInputProps({
                   placeholder: "Where would you like to go?",
                 })}
@@ -67,9 +67,9 @@ const MainNav = () => {
                 {suggestions.map((suggestion) => {
                   const style = suggestion.active
                     ? {
-                        backgroundColor: "gray",
-                        cursor: "pointer",
-                      }
+                      backgroundColor: "gray",
+                      cursor: "pointer",
+                    }
                     : { backgroundColor: "none", cursor: "pointer" };
 
                   return (
@@ -84,11 +84,11 @@ const MainNav = () => {
         </PlacesAutocomplete>
 
         {/* <a
-            href="#"
-            className="categoryButton"
-          >
-            SEARCH
-          </a> */}
+            href="#"
+            className="categoryButton"
+          >
+            SEARCH
+          </a> */}
         {/* </Form> */}
       </div>
     </Container>

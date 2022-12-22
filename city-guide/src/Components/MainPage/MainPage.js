@@ -11,17 +11,21 @@ import MainNav from "../MainNav/mainnav";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 // import Footer from "../Footer/footer";
 import PlaceDetails from "../PlaceDetails/PlaceDetails";
-// import Map from "../Map/Map";
+import Map from "../Map/Map";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/Row";
 import { getPlacesData } from "../../api/travelAdvisorAPI"
-import {  Grid,  } from "@material-ui/core";
+import { Grid, } from "@material-ui/core";
 
 
 const MainPageBG = () => {
   const [type, setType] = useState('restaurants');
   const [places, setPlaces] = useState([]);
   const [elRefs, setElRefs] = useState([]);
+  const [coords, setCoords] = useState({});
+  const [bounds, setBounds] = useState(null);
+  const [childClicked, setChildClicked] = useState(null);
+  const [filteredPlaces, setFilteredPlaces] = useState([]);
 
   useEffect(() => {
     setElRefs((refs) =>
@@ -45,24 +49,26 @@ const MainPageBG = () => {
     <div className="mainPageBG">
       <Parallax pages={5}>
         <ParallaxLayer
-          sticky={{ start: 0.1, end: 0.1 }}
+          sticky={{ start: 0, end: 0.1 }}
           style={{ textAlign: "center" }}
         >
+          <CategoryCards
+            setType={setType}
+            type={type}
+          />
           <LandingHeader />
+          
           <MainNav />
         </ParallaxLayer>
         <ParallaxLayer
           sticky={{ start: 0.55 }}
           style={{ textAlign: "center", marginLeft: "22em" }}
         >
-          <CategoryCards
-            setType={setType}
-            type={type}
-          />
+          
           {/* /*  <Map /> */}
         </ParallaxLayer>
         <ParallaxLayer
-          sticky={{ start: 0.99 }}
+          sticky={{ start: 1.25 }}
           style={{
             textAlign: "center",
             marginRight: "auto",
@@ -75,22 +81,16 @@ const MainPageBG = () => {
               md={4}
               className="g-4"
             >
-              {/* {places.map((place, index) => {
-                var randKey = Math.random;
-                debugger;
-                return (<PlaceDetails key={`${index}${randKey}`} place={place} />)
-              })} */}
-
-
-              {places?.map((place, i) => (
-                <Grid ref={elRefs[i]} key={i} item xs={12}>
-                  <PlaceDetails
-                    // selected={Number(childClicked) === i}
-                    refProp={elRefs[i]}
-                    place={place}
-                  />
-                </Grid>
-              ))}
+                <div className="spacer"></div>
+                {places?.map((place, i) => (
+                  <Grid ref={elRefs[i]} key={i} item xs={12}>
+                    <PlaceDetails
+                      // selected={Number(childClicked) === i}
+                      refProp={elRefs[i]}
+                      place={place}
+                    />
+                  </Grid>
+                ))}
 
             </Row>
           </Container>

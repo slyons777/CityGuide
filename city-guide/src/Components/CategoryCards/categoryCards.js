@@ -16,11 +16,11 @@ const CategoryCards = ({setType, type,}) => {
             <MdRestaurant /> 
           </h1>
         </section>
-        <section className="mainCategoryOptions"  onClick={() => setType("weather")} >
+        {/* <section className="mainCategoryOptions"  onClick={() => setType("weather")} >
           <h1 className="categoryWeather">
             <WiThermometer />
           </h1>
-        </section>
+        </section> */}
         <section className="mainCategoryOptions" onClick={() => setType("hotels")}>
           <div>
             <h1 className="categoryStay">
@@ -28,11 +28,11 @@ const CategoryCards = ({setType, type,}) => {
             </h1>
           </div> 
         </section>
-        <section className="mainCategoryOptions" onClick={() => setType("hiking trail")}>
+        {/* <section className="mainCategoryOptions" onClick={() => setType("hiking trail")}>
           <h1 className="categoryOutdoors">
             <BsTreeFill />
           </h1>
-        </section>
+        </section> */}
         <section className="mainCategoryOptions"  onClick={() => setType('attractions')}>
           <h1 className="categoryAttractions">
             <MdOutlineAttractions />
