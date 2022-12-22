@@ -23,6 +23,13 @@ CityGuide is a non-deployed web facing app utilizing local storage to simulate a
     REACT_APP_RAPID_API_TRAVEL_API_KEY= 
     REACT_APP_RAPID_API_WEATHER_API_KEY= 
 
+- Add the dependencies after clonning the copy of the repo into the root of the project please include the --force as you see below and do run each of the react dependecies from the terminal one at a time. Please disregard the warnings: 
+
+    npm install @material-ui/core --force  
+    npm install @material-ui/icons --force 
+    npm install @material-ui/lab --force    
+    npm install @react-google-maps/api axios --force  
+    npm install @react-google-maps/api axios google-map-react --force
 
 2. Open a terminal and navigate to CityGuide/server and run `node app.js`
 3. Navigate to CityGuide/city-guide and run `npm start`;
