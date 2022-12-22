@@ -7,66 +7,36 @@ import { MdOutlineAttractions } from "react-icons/md";
 import { WiThermometer } from "react-icons/wi";
 import { BsTreeFill } from "react-icons/bs";
 
-const CategoryCards = () => {
+const CategoryCards = ({setType, type,}) => {
   return (
     <Container>
       <CardGroup>
-        <section className="mainCategoryOptions">
+        <section className="mainCategoryOptions" onClick={() => setType("restaurants")}>
           <h1 className="categoryFood">
-            <MdRestaurant />
+            <MdRestaurant /> 
           </h1>
-          {/* <a
-            href="#"
-            className="categoryButton"
-          >
-            Button
-          </a> */}
         </section>
-        <section className="mainCategoryOptions">
+        <section className="mainCategoryOptions"  onClick={() => setType("weather")} >
           <h1 className="categoryWeather">
             <WiThermometer />
           </h1>
-          {/* <a
-            href="#"
-            className="categoryButton"
-          >
-            Button
-          </a> */}
         </section>
-        {/* <section className="mainCategoryOptions">
+        <section className="mainCategoryOptions" onClick={() => setType("hotels")}>
           <div>
             <h1 className="categoryStay">
               <MdHotel />
             </h1>
-          </div> */}
-          {/* <a
-            href="#"
-            className="categoryButton"
-          >
-            Button
-          </a> */}
-        {/* </section> */}
-        <section className="mainCategoryOptions">
+          </div> 
+        </section>
+        <section className="mainCategoryOptions" onClick={() => setType("hiking trail")}>
           <h1 className="categoryOutdoors">
             <BsTreeFill />
           </h1>
-          {/* <a
-            href="#"
-            className="categoryButton"
-          >
-            Button
-          </a> */}
         </section>
-        <section className="mainCategoryOptions">
+        <section className="mainCategoryOptions"  onClick={() => setType('attractions')}>
           <h1 className="categoryAttractions">
             <MdOutlineAttractions />
           </h1>
-          {/* <a
-            href="#"
-            className="categoryButton"
-          >
-            Button
-          </a> */}
         </section>
       </CardGroup>
     </Container>
