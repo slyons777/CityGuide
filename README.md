@@ -37,7 +37,11 @@ CityGuide is a non-deployed web facing app utilizing local storage to simulate a
 5. Type in a location in the search bar to get started! 
 
 ## Usage
-1. Explain usage here
+1. This City Guide is used to learn more about the attactions, hotel and restaurants near your location or in the city you are planning to travel. 
+2. The information is displayed in container cards for example the restaurant container card provide information about the name of the restaurant, showing its five stars reviews, prices, the address and contact number of the restaurant just to name a few. 
+
+3. A Search bar is provide so the user can search for their current city or the future travel location.
+4. Icons buttons once user submit the location of their choice then the icons will have the state of that current city the icons will hold the state of the current city hotels, attractions or restaurants.  
 
 ## Contributing
 Vladimir Antigua
