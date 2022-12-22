@@ -14,6 +14,16 @@ CityGuide is a non-deployed web facing app utilizing local storage to simulate a
 
 ## Getting Started
 1. Clone a copy of the repo into ,your chosen directory.
+  - make sure to create a .env file in the root of the directory and add your own API keys for the following sites: 
+  See example below of the .env file copy paste and add the API keys from the Gooogle places and the travel adviser from the Rapids APIs: 
+  
+  sample .env file: 
+  
+    REACT_APP_GOOGLE_MAPS_API_KEY=
+    REACT_APP_RAPID_API_TRAVEL_API_KEY= 
+    REACT_APP_RAPID_API_WEATHER_API_KEY= 
+
+
 2. Open a terminal and navigate to CityGuide/server and run `node app.js`
 3. Navigate to CityGuide/city-guide and run `npm start`;
 4. Open a browser and navigate to localhost:3001
