@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, createRef } from "react";
 import background from "../../assets/bg.mp4";
 import mountain from "../../images/mountain.jpg";
 import temple from "../../images/temple.jpg";
@@ -7,11 +7,40 @@ import france from "../../images/france.jpg";
 import CategoryCards from "../CategoryCards/categoryCards";
 import LandingHeader from "../LandingHeader/landingHeader";
 import MainNav from "../MainNav/mainnav";
-import CategoryResults from "../CategoryResultCards/categoryResultCards";
+// import CategoryResults from "../CategoryResultCards/categoryResultCards";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-import Footer from "../Footer/footer";
+// import Footer from "../Footer/footer";
+import PlaceDetails from "../PlaceDetails/PlaceDetails";
+// import Map from "../Map/Map";
+import Container from "react-bootstrap/esm/Container";
+import Row from "react-bootstrap/Row";
+import { getPlacesData } from "../../api/travelAdvisorAPI"
+import {  Grid,  } from "@material-ui/core";
+
 
 const MainPageBG = () => {
+  const [type, setType] = useState('restaurants');
+  const [places, setPlaces] = useState([]);
+  const [elRefs, setElRefs] = useState([]);
+
+  useEffect(() => {
+    setElRefs((refs) =>
+      Array(places.length)
+        .fill()
+        .map((_, i) => refs[i] || createRef())
+    );
+  }, [places]);
+
+  useEffect(() => {
+    console.log("Type after change: ", type);
+    var southWest = { lat: 47.6062095, lng: -122.3320708 };
+    var northEast = { lat: 48.6062095, lng: -122.1320708 };
+    getPlacesData(type, southWest, northEast)
+      .then((data) => {
+        setPlaces(data)
+      }).catch((err) => console.log(err));
+  }, [type]);
+
   return (
     <div className="mainPageBG">
       <Parallax pages={5}>
@@ -26,7 +55,11 @@ const MainPageBG = () => {
           sticky={{ start: 0.55 }}
           style={{ textAlign: "center", marginLeft: "22em" }}
         >
-          <CategoryCards />
+          <CategoryCards
+            setType={setType}
+            type={type}
+          />
+          {/* /*  <Map /> */}
         </ParallaxLayer>
         <ParallaxLayer
           sticky={{ start: 0.99 }}
@@ -36,7 +69,31 @@ const MainPageBG = () => {
             marginLeft: "auto",
           }}
         >
-          <CategoryResults />
+          <Container>
+            <Row
+              xs={6}
+              md={4}
+              className="g-4"
+            >
+              {/* {places.map((place, index) => {
+                var randKey = Math.random;
+                debugger;
+                return (<PlaceDetails key={`${index}${randKey}`} place={place} />)
+              })} */}
+
+
+              {places?.map((place, i) => (
+                <Grid ref={elRefs[i]} key={i} item xs={12}>
+                  <PlaceDetails
+                    // selected={Number(childClicked) === i}
+                    refProp={elRefs[i]}
+                    place={place}
+                  />
+                </Grid>
+              ))}
+
+            </Row>
+          </Container>
         </ParallaxLayer>
         <ParallaxLayer
           offset={0}

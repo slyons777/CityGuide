@@ -1,70 +1,63 @@
-let autocomplete;
-let map;
-let myLatlng = localStorage.getItem('loc');
+// const { response } = require("express");
 
-if (!myLatlng) {
-    myLatlng = { lat: 47.6062095, lng: -122.3320708 };
-    console.log("loc before set", myLatlng);
-    localStorage.setItem('loc', JSON.stringify(myLatlng));
-} else {
-    myLatlng = localStorage.getItem('loc');
-    myLatlng = JSON.parse(myLatlng);
-}
+// for (var i = 0; i < response.forecasts; i++) {
+//     if (i === 0) {
+//         // make the current day's weather card
+//         let newDiv = document.createElement("div");
+//         newDiv.setAttribute("class", "cur-weatherDiv");
 
-function initAutocomplete() {
-    autocomplete = new google.maps.places.Autocomplete(
-        document.getElementById('autocomplete'),
-        {
-            types: ['(cities)'],
-            componentRestricitons: { 'country': ['US'] },
-            fields: ['place_id', 'geometry', 'name']
-        });
+//         let newCard = document.createElement("card");
+//         newCard.setAttribute("class", "cur-weatherCard");
+//         //maybe
+//         //let cardImage = document.createElement("img");
+//         let dayH3 = document.createElement("h3");
+//         dayH3.setAttribute("id", "cur-weatherDay");
+//         dayH3.innerText = response.forecasts[0].day;
 
-    autocomplete.addListener("place_changed", onPlaceChanged);
+//         let tempH4 = document.createElement("h4");
+//         tempH4.setAttribute("id", "cur-temp");
+//         tempH4.innerText = `${response.current_observation.condition.temperature} degrees`;
 
-    map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 11,
-        center: myLatlng,
-        gestureHandling: "cooperative",
-    });
-    // Create the initial InfoWindow.
-    let infoWindow = new google.maps.InfoWindow({
-        content: "Click the map to get Lat/Lng!",
-        position: myLatlng,
-    });
+//         let weatherH3 = document.createElement("h3");
+//         weatherH3.setAttribute("id", "cur-weatherStatus");
+//         weatherH3.innerText = response.current_observation.condition.text;
 
-    infoWindow.open(map);
-    // Configure the click listener.
-    map.addListener("click", (mapsMouseEvent) => {
-        // Close the current InfoWindow.
-        infoWindow.close();
-        // Create a new InfoWindow.
-        infoWindow = new google.maps.InfoWindow({
-            position: mapsMouseEvent.latLng,
-        });
-        infoWindow.setContent(
-            JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-        );
-        infoWindow.open(map);
-    });
-}
+//         let windSpeed = document.createElement("h4");
+//         windSpeed.setAttribute("id", "cur-wind");
+//         windSpeed.innerText = `${response.current_observation.wind.speed} MPH`;
 
-function onPlaceChanged() {
-    let place = autocomplete.getPlace();
+//         newCard.append(dayH3, tempH4, weatherH3, windSpeed);
+//         newDiv.append(newCard);
+//         // append to whereever here
+//     } else {
+//         // make the forecast cards
+//         let newDiv = document.createElement("div");
+//         newDiv.setAttribute("class", "weatherDiv");
 
-    if (!place.geometry) {
-        // user did not select a prediction, then reset input field
-        document.querySelector("#autocomplete").setAttribute("placeholder", "Enter a Place");
-    } else {
-        var lat_lng = JSON.stringify(place.geometry.location);
-        lat_lng = JSON.parse(lat_lng);
-        // Display location details about a valid place
-        document.getElementById("details").innerHTML = `Name: ${place.name}  /  Location: ${lat_lng["lat"]}, ${lat_lng["lng"]}`;
-        jumpToLocation(lat_lng["lat"], lat_lng["lng"]);
-    }
-}
+//         let newCard = document.createElement("card");
+//         newCard.setAttribute("class", "weatherCard");
 
-function jumpToLocation(lat, lng) {
-    var center = new google.maps.LatLng(lat, lng);
-    map.panTo(center);
-}
+//         let dayH3 = document.createElement("h3");
+//         dayH3.setAttribute("id", "weatherDay");
+//         dayH3.innerText = response.forecasts[i].day;
+
+//         let highH4 = document.createElement("h4");
+//         highH4.setAttribute("id", "high");
+//         highH4.innerText = `${response.forecasts[i].high} degrees`;
+
+//         let lowH4 = document.createElement("h4");
+//         lowH4.setAttribute("id", "low");
+//         lowH4.innerText = `${response.forecasts[i].low} degrees`;
+
+//         let weatherH3 = document.createElement("h3");
+//         weatherH3.setAttribute("id", "weatherStatus");
+//         weatherH3.innerText = response.forecasts[i].text;
+
+//         newCard.append(dayH3, highH4, lowH4, weatherH3);
+//         newDiv.append(newCard);
+//         // append to whereever here
+//     }
+// }
+
+
+//react package json -> add line called <proxy: "http://localhost:3000">

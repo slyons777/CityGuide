@@ -1,8 +1,13 @@
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Click LatLng</title>
+
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- <script type="" src="./location-data.js"></script> -->
 
     <!-- <link rel="stylesheet" type="text/css" href="./style.css" /> -->
     <!-- <script type="module" src="./geocoding.js"></script> -->
@@ -33,25 +38,51 @@
 <body>
     <input id="autocomplete" placeholder="type a place" type="text" style="width: 500px" />
     <p id="details"></p>
-    <form method="get" action="/api/weather">
-        <input type="submit">
-    </form>
-    <div id="map">MAP AREA</div>
 
+    <div id="infowindow-content">
+        <span id="place-name" class="title"></span><br />
+        <span id="place-address"></span>
+    </div>
+
+    <button onclick="getWeather()">Weather</button>
+    <p id="weatherDetails"></p>
+
+    <!-- <button onclick="getYelp()">Food/Drink</button>
+    <p id="yelpDetails"></p>
+    <button onclick="getPlaces()">Attractions</button>
+    <p id="placeDetails"></p>
+    <button onclick="getWeather()">Weather</button>
+    <p id="weatherDetails"></p> -->
+
+    <div id="map">MAP AREA</div>
+    <p>STUFF</p>
+    <!-- <script src="./location.js"></script> -->
+    <script src="./location-data.js"></script>
     <script>
         let autocomplete;
         let map;
         let myLatlng = localStorage.getItem('loc');
 
+        function getWeather() {
+            fetch("localhost:3000/api/weather")
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log("Weather Worked: ", data);
+                })
+                .catch(err => console.error('error', err));
+        }
+
         if (!myLatlng) {
             myLatlng = { lat: 47.6062095, lng: -122.3320708 };
-            console.log("loc before set", myLatlng);
             localStorage.setItem('loc', JSON.stringify(myLatlng));
+            storeLocation(myLatlng);
         } else {
             myLatlng = localStorage.getItem('loc');
             myLatlng = JSON.parse(myLatlng);
+            storeLocation(myLatlng);
         }
-
+        let marker;
+        let infoWindow;
         function initAutocomplete() {
             autocomplete = new google.maps.places.Autocomplete(
                 document.getElementById('autocomplete'),
@@ -68,25 +99,39 @@
                 center: myLatlng,
                 gestureHandling: "cooperative",
             });
-            // Create the initial InfoWindow.
-            let infoWindow = new google.maps.InfoWindow({
-                content: "Click the map to get Lat/Lng!",
+            marker = new google.maps.Marker({
                 position: myLatlng,
+                map,
+                title: "Hello World!",
             });
+            // Create the initial InfoWindow.
+            // infoWindow = new google.maps.InfoWindow({
+            //     // content: "Click the map to get Lat/Lng!",
+            //     position: myLatlng,
+            // });
 
-            infoWindow.open(map);
+            // infoWindow.open(map);
             // Configure the click listener.
             map.addListener("click", (mapsMouseEvent) => {
+                marker.setVisible(false);
                 // Close the current InfoWindow.
-                infoWindow.close();
-                // Create a new InfoWindow.
-                infoWindow = new google.maps.InfoWindow({
-                    position: mapsMouseEvent.latLng,
-                });
-                infoWindow.setContent(
-                    JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-                );
-                infoWindow.open(map);
+                // infoWindow.close();
+                // // Create a new InfoWindow.
+                // infoWindow = new google.maps.InfoWindow({
+                //     position: mapsMouseEvent.latLng,
+                // });
+                // infoWindow.setContent(
+                //     JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+                // );
+                var coords = JSON.stringify(mapsMouseEvent.latLng.toJSON());
+                coords = JSON.parse(coords);
+
+                jumpToLocation(coords["lat"], coords["lng"]);
+                var place = autocomplete.getPlace();
+                marker.setPosition( mapsMouseEvent.latLng);
+                marker.setVisible(true);
+
+                // infoWindow.open(map);
             });
         }
 
@@ -103,14 +148,23 @@
                 document.getElementById("details").innerHTML = `Name: ${place.name}  /  Location: ${lat_lng["lat"]}, ${lat_lng["lng"]}`;
                 jumpToLocation(lat_lng["lat"], lat_lng["lng"]);
             }
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
+            // infowindow.open(map, marker);
         }
 
         function jumpToLocation(lat, lng) {
             var center = new google.maps.LatLng(lat, lng);
             map.panTo(center);
+
+            myLatlng = {
+                lat: lat,
+                lng: lng
+            };
+
+            localStorage.setItem('loc', JSON.stringify(myLatlng));
+            storeLocation(myLatlng);
         }
-
-
     </script>
 
     <!-- 
